@@ -1,14 +1,22 @@
 # UV Sheet Design Renders
 
-Living-room render ke UV-sheet areas par supplied product references apply kiye gaye hain. Ceiling strip lights aur spotlights ko warm cream tone diya gaya hai.
+Supplied room renders par UV-sheet options aur ceiling concepts apply kiye gaye hain. All generated images, references and reproducible Pillow scripts are included.
 
-## Latest result — UV Sheet CODE 2712
+## Latest — Bedroom redesign
 
-![Room render with UV Sheet CODE 2712](edited-uv-sheet-code-2712.png)
+Bedroom ki visible walls par **UV Sheet CODE 2712** apply ki gayi hai. Wooden slat ceiling ko warm-white panel ceiling se replace karke perspective seams, six recessed warm downlights aur perimeter cove lighting add ki gayi hai.
 
-### Before / after
+![Bedroom with white panel ceiling and CODE 2712 walls](bedroom-white-ceiling-code-2712.png)
 
-![CODE 2712 before and after comparison](code-2712-before-after.png)
+### Bedroom before / after
+
+![Bedroom redesign comparison](bedroom-before-after.png)
+
+## Living room — UV Sheet CODE 2712
+
+![Living room with UV Sheet CODE 2712](edited-uv-sheet-code-2712.png)
+
+![Living-room CODE 2712 comparison](code-2712-before-after.png)
 
 ### CODE 2712 reference
 
@@ -22,21 +30,21 @@ Living-room render ke UV-sheet areas par supplied product references apply kiye 
 
 ![Previous before and after comparison](before-after-comparison.png)
 
-## Source files
+## Source renders
 
-| Original room | Beige stone reference |
-|---|---|
-| ![Original room render](source-interior.png) | ![Beige stone reference](reference-stone.png) |
+- `bedroom-source.png`
+- `source-interior.png`
+- `reference-stone.png`
 
 ## Recreate the edits
 
 ```bash
 python -m pip install -r requirements.txt
+python create_bedroom_code_2712_edit.py
 python create_code_2712_edit.py
 python create_uv_sheet_edit.py
 ```
 
-Generated CODE 2712 files:
-- `edited-uv-sheet-code-2712.png`
-- `code-2712-before-after.png`
-- `code-2712-pattern-crop.png`
+Latest bedroom outputs:
+- `bedroom-white-ceiling-code-2712.png`
+- `bedroom-before-after.png`
