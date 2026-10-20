@@ -1,28 +1,42 @@
-# UV Sheet Colour Edit
+# UV Sheet Design Renders
 
-Living-room render mein marble UV sheet ko supplied beige/brown stone reference ke colour palette mein update kiya gaya hai. Ceiling strip lights aur spotlights ko warm cream tone diya gaya hai.
+Living-room render ke UV-sheet areas par supplied product references apply kiye gaye hain. Ceiling strip lights aur spotlights ko warm cream tone diya gaya hai.
 
-## Final result
+## Latest result — UV Sheet CODE 2712
 
-![Edited UV sheet with warm cream lighting](edited-uv-sheet-warm-cream.png)
+![Room render with UV Sheet CODE 2712](edited-uv-sheet-code-2712.png)
 
-## Before / after
+### Before / after
 
-![Before and after comparison](before-after-comparison.png)
+![CODE 2712 before and after comparison](code-2712-before-after.png)
 
-## Supplied files
+### CODE 2712 reference
 
-| Original render | Stone colour reference |
+| Supplied screenshot | Extracted pattern |
 |---|---|
-| ![Original render](source-interior.png) | ![Stone reference](reference-stone.png) |
+| ![CODE 2712 screenshot](code-2712-reference.png) | ![Extracted CODE 2712 pattern](code-2712-pattern-crop.png) |
 
-## Recreate the edit
+## Previous beige/brown version
+
+![Previous beige UV sheet render](edited-uv-sheet-warm-cream.png)
+
+![Previous before and after comparison](before-after-comparison.png)
+
+## Source files
+
+| Original room | Beige stone reference |
+|---|---|
+| ![Original room render](source-interior.png) | ![Beige stone reference](reference-stone.png) |
+
+## Recreate the edits
 
 ```bash
 python -m pip install -r requirements.txt
+python create_code_2712_edit.py
 python create_uv_sheet_edit.py
 ```
 
-The script generates:
-- `edited-uv-sheet-warm-cream.png`
-- `before-after-comparison.png`
+Generated CODE 2712 files:
+- `edited-uv-sheet-code-2712.png`
+- `code-2712-before-after.png`
+- `code-2712-pattern-crop.png`
