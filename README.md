@@ -6,6 +6,12 @@ Attached bedroom image ki **sirf ceiling panels** recolour ki gayi hain. Fan, li
 
 **Best overall choices:** warm ivory room ko bright aur premium banata hai; ash grey balanced modern option hai; walnut existing wall panels ke saath sabse naturally match karta hai.
 
+### Plain off-white VOX panel — new sample
+
+Smooth off-white VOX finish with broad, subtle panel joints. Original dark wood grooves remove kiye gaye hain; fan aur warm ceiling lights retain kiye gaye hain.
+
+![Bedroom ceiling with plain off-white VOX panels](bedroom-ceiling-plain-off-white-vox.png)
+
 ### 1. Warm ivory — light
 
 ![Bedroom ceiling in warm ivory](bedroom-ceiling-warm-ivory.png)
