@@ -93,3 +93,16 @@ Generated CODE 2712 files:
 - `edited-uv-sheet-code-2712.png`
 - `code-2712-before-after.png`
 - `code-2712-pattern-crop.png`
+
+## PDF Studio Local
+
+The repository also contains a private, offline Windows 11 PDF editor in [`pdf-studio-local/`](pdf-studio-local/README.md).
+
+```bash
+cd pdf-studio-local
+npm install
+npm run typecheck
+npm run build
+```
+
+The application supports local PDF annotation, Hindi/Devanagari text, page organization, secure redaction, AES-256 password protection, and saving edited copies directly to the Windows Desktop.
