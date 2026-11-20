@@ -107,8 +107,13 @@ def recolour_ceiling(source, target_rgb):
     return Image.fromarray(np.uint8(np.clip(result + 0.5, 0, 255)), "RGB")
 
 
-def create_plain_off_white_vox_ceiling(source):
-    """Replace the wood slats with broad, plain off-white VOX panels."""
+def create_plain_off_white_vox_ceiling(
+    source,
+    base_colour=(236, 233, 224),
+    add_seams=True,
+    profile_light_colour=(255, 214, 159),
+):
+    """Replace the wood slats with a smooth ceiling while retaining installed lights."""
     pixels = np.asarray(source).astype(np.float32)
     height, width = pixels.shape[:2]
     mask = np.asarray(full_ceiling_mask((width, height)), dtype=np.float32) / 255.0
@@ -125,30 +130,31 @@ def create_plain_off_white_vox_ceiling(source):
     reference = float(np.median(soft_light[mask > 0.9]))
     shade = np.clip(0.965 + (soft_light - reference) / 360.0, 0.88, 1.08)
 
-    off_white = np.array((236, 233, 224), dtype=np.float32)
-    panel_pixels = np.clip(off_white[None, None, :] * shade[..., None], 0, 250)
+    base = np.array(base_colour, dtype=np.float32)
+    panel_pixels = np.clip(base[None, None, :] * shade[..., None], 0, 250)
     panels = Image.fromarray(np.uint8(panel_pixels + 0.5), "RGB").convert("RGBA")
 
-    # Wide, low-contrast joints make the finish read as plain installed VOX panels.
-    seams = Image.new("RGBA", (width, height), (0, 0, 0, 0))
-    seam_draw = ImageDraw.Draw(seams)
-    vanishing_point = (580, 193)
-    for top_x in (124, 275, 430, 585, 740, 910):
-        seam_draw.line(
-            [vanishing_point, (top_x, 0)],
-            fill=(137, 135, 130, 78),
-            width=1,
-        )
-    panels = Image.alpha_composite(panels, seams).convert("RGB")
-    panel_array = np.asarray(panels).astype(np.float32)
+    if add_seams:
+        # Wide, low-contrast joints make the finish read as installed VOX panels.
+        seams = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+        seam_draw = ImageDraw.Draw(seams)
+        vanishing_point = (580, 193)
+        for top_x in (124, 275, 430, 585, 740, 910):
+            seam_draw.line(
+                [vanishing_point, (top_x, 0)],
+                fill=(137, 135, 130, 78),
+                width=1,
+            )
+        panels = Image.alpha_composite(panels, seams)
+    panel_array = np.asarray(panels.convert("RGB")).astype(np.float32)
 
     # Rebuild the original warm LED/downlight glow over the new smooth surface.
     ceiling_area = mask > 0.05
     light_core = np.uint8(((luminance > 168.0) & ceiling_area) * 255)
     halo = Image.fromarray(light_core, "L").filter(ImageFilter.MaxFilter(7))
     halo = np.asarray(halo.filter(ImageFilter.GaussianBlur(7.0)), dtype=np.float32) / 255.0
-    warm_light = np.array((255, 214, 159), dtype=np.float32)
-    panel_array = panel_array * (1.0 - halo[..., None] * 0.28) + warm_light * halo[..., None] * 0.28
+    profile_light = np.array(profile_light_colour, dtype=np.float32)
+    panel_array = panel_array * (1.0 - halo[..., None] * 0.28) + profile_light * halo[..., None] * 0.28
 
     # Preserve the luminous cores and trim of the existing installed fixtures.
     fixture_alpha = smoothstep(182.0, 242.0, luminance) * mask
@@ -184,6 +190,15 @@ def main():
     vox_output = ROOT / "bedroom-ceiling-plain-off-white-vox.png"
     create_plain_off_white_vox_ceiling(source).save(vox_output, optimize=True)
     print(f"Created {vox_output.name}: {source.width}x{source.height}")
+
+    white_output = ROOT / "bedroom-ceiling-plain-white-profile-light.png"
+    create_plain_off_white_vox_ceiling(
+        source,
+        base_colour=(246, 246, 243),
+        add_seams=False,
+        profile_light_colour=(255, 239, 211),
+    ).save(white_output, optimize=True)
+    print(f"Created {white_output.name}: {source.width}x{source.height}")
 
 
 if __name__ == "__main__":
