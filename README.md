@@ -93,3 +93,19 @@ Generated CODE 2712 files:
 - `edited-uv-sheet-code-2712.png`
 - `code-2712-before-after.png`
 - `code-2712-pattern-crop.png`
+
+## Canada tourist visa purpose letter
+
+A neutral, professional Letter of Purpose and Explanation template for a Canadian Temporary Resident Visa reapplication. It addresses the previous concerns about family ties, financial establishment, low ongoing bank balances, unexplained large deposits, and temporary intent. The known employment transition from Om Sai Ram Enterprises to a Software Engineer role at Dili Private Limited on 3 January 2025 is included.
+
+The generated files intentionally remain marked as a draft until every bracketed field is replaced with truthful, document-supported information:
+
+- `canada-tourist-visa-letter-of-purpose.md` — editable letter and document checklist
+- `canada-tourist-visa-letter-of-purpose.pdf` — formatted two-page A4 letter
+
+Update `DETAILS` and `LARGE_DEPOSITS` near the top of the generator, then recreate both files:
+
+```bash
+python -m pip install -r requirements.txt
+python create_canada_tourist_visa_letter.py
+```
